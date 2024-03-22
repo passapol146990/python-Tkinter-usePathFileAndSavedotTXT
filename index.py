@@ -3,7 +3,6 @@ from tkinter import ttk
 from tkinter import messagebox,filedialog
 import pyautogui as at, pandas as pd
 import threading,csv
-
 from tkinter import filedialog
 normal = ('Angsana New',15)
 font1 = ('Angsana New',25)
@@ -31,20 +30,21 @@ def selectPath():
     folder_selected = filedialog.askdirectory()
     npath = getSettingsProgram()
     npath["pathdownload"] = folder_selected
+    titlePath.set(folder_selected)
     setSettingsProgram(npath)
 
-# textPath = StringVar()
-# textPath.set(getSettingsProgram()["pathdownload"])
-fside10 = ("Angsana New",10)
 # font1 = ("Angsana New",10)
-app = Tk()
-app.title(programname)
-app.config(bg="#ffffff") 
-app.geometry("500x800-0+0")
+window = Tk()
+window.title(programname)
+window.config(bg="#ffffff") 
+window.geometry("500x800-0+0")
 
-titlePath = Label(app,text=getSettingsProgram()["pathdownload"])
-titlePath.place(x=50,y=20)
-btnselectPath = Button(app,text="Path",command=selectPath)
+titlePath = StringVar()
+titlePath.set(getSettingsProgram()["pathdownload"])
+fside10 = ("Angsana New",10)
+
+LabletitlePath = Label(window,textvariable=titlePath)
+LabletitlePath.place(x=50,y=20)
+btnselectPath = Button(window,text="Path",command=selectPath)
 btnselectPath.place(x=10,y=20)
-
-app.mainloop()
+window.mainloop()
